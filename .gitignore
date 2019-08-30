@@ -8,6 +8,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+.vscode/
+rsp_game_env
+data/
+uploads/
 build/
 develop-eggs/
 dist/

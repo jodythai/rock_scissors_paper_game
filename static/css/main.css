@@ -1,0 +1,195 @@
+h1, h2, h3, h4, h5, h6, .title  {
+  font-family: 'Pacifico', cursive;
+  line-height: 2;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: bold;
+  margin: 0 0 30px;
+  text-align: center;
+  animation: hue 10s infinite linear;
+}
+
+.hidden {
+  display: none!important;
+}
+
+.text-grads-1 {
+  background: -webkit-gradient(linear,left top,right top,from(#3494E6),to(#EC6EAD));
+  background: linear-gradient(to right,#3494E6,#EC6EAD);
+  background-clip: border-box;  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+}
+
+.text-grads-2 {
+  background: -webkit-gradient(linear,left top,right top,from(#d53369),to(#daae51));
+  background: linear-gradient(to right,#d53369,#daae51);
+  background-clip: border-box;  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+}
+
+.text-grads-3 {
+  background: -webkit-gradient(linear,left top,right top,from(#0700b8),to(#00ff88));
+  background: linear-gradient(to right,#0700b8,#00ff88);
+  background-clip: border-box;  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+}
+
+#file {
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.btn-choose-other-image.is-info.is-outlined {
+  background-color: #fff;
+}
+
+/*-----------------------------------*\
+  MAIN
+\*-----------------------------------*/
+.section-main {
+  padding: 2rem 1.5rem!important; 
+  margin: 0 auto;
+}
+
+.box-main {
+  background: url("../img/pattern-4.jpg") repeat;
+  text-align: center;
+  padding: 40px;
+  transition: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.box-intro .title {
+  margin: 0 0 20px 0;
+}
+
+#my-camera {
+  margin: 0 auto 20px auto;
+}
+
+.btn-capture-image {
+  margin: 0 6px;
+}
+
+#loading {
+  margin: 20px auto;
+  width: 40%;
+}
+
+.wrapper {
+  width: 200%;
+  overflow: hidden;
+}
+
+.box-upload-file {
+  float: left;
+  transition: 0.4s;
+  transform: translate(30%, 0);
+  transition-timing-function: ease-in-out;
+}
+
+.box-results {
+  float: left;
+  transition: 0.4s;
+  transform: translate(50%, 0);
+  transition-timing-function: ease-in-out;
+  opacity: 0;
+}
+
+#go-back {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  -webkit-text-fill-color: white;
+}
+
+#results {
+  margin: 20px auto;
+  position: relative;
+}
+
+#results ul {
+  margin: 0 0 20px 0;
+}
+
+#results ul li {
+  margin: 0 0 1px 0;
+}
+
+#results .num {
+  background: #b9e2f3;
+  border: 1px solid #12739c;
+  color: #000;
+  font-weight: bold;
+  display: inline-block;
+  width: 100px;
+  padding: 4px 10px;
+  text-align: right;
+}
+
+#results .prob {
+  background: #b9e2f3;
+  border: 1px solid #12739c;
+  border-left: none;
+  color: #000;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: -4px;
+  width: 250px;
+  padding: 4px 10px;
+  text-align: left;
+}
+
+#prediction {
+  margin: 0;
+}
+
+/*-----------------------------------*\
+  $ANIMATIONS
+\*-----------------------------------*/
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  
+  to {
+    filter: hue-rotate(-360deg);
+  }
+}
+
+.anim-transform-box {
+  transition: 0.4s;
+  transform:  scale(0.4) 
+              translate(-70%, -40%);
+  transition-timing-function: ease-in-out;
+}
+
+.anim-show-result {
+  transition: 0.4s;
+  transform: translate(-50%, 0);
+  transition-timing-function: ease-in-out;
+  opacity: 1;
+}
+
+/*-----------------------------------*\
+  RESPONSIVE
+\*-----------------------------------*/
+@media screen 
+  and (min-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+  
+    .section-main {
+      max-width: 1200px;
+    }
+
+}
