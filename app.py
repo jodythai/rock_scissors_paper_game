@@ -2,7 +2,7 @@ import numpy as np
 import logging
 import sys
 import datetime
-import db_init as db
+# import db_init as db
 import tensorflow as tf
 from blueprints import *
 from flask import Flask, request, jsonify
@@ -17,8 +17,8 @@ if __name__ == '__main__':
 app.debug = True
 
 # App Settings
-app.config['PREDICT_IMAGE_WIDTH'] = 170
-app.config['PREDICT_IMAGE_HEIGHT'] = 170
+app.config['PREDICT_IMAGE_WIDTH'] = 192
+app.config['PREDICT_IMAGE_HEIGHT'] = 192
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 # Handle predict correction

@@ -1,5 +1,5 @@
-CAPTURE_IMG_WIDTH = 640
-CAPTURE_IMG_HEIGHT = 480
+CAPTURE_IMG_WIDTH = 400
+CAPTURE_IMG_HEIGHT = 300
 
 // Show the selected image to the UI before uploading
 function readURL(input, id) {
@@ -28,14 +28,41 @@ jQuery.ajaxSetup({
   }
 });
 
-// HTML5 WEBCAM
-Webcam.set({
-  width: CAPTURE_IMG_WIDTH,
-  height: CAPTURE_IMG_HEIGHT,
-  image_format: 'jpeg',
-  jpeg_quality: 90
+$(document).ready(function() {
+
+  initialize_webcam()
+
+  // handle close modal box button
+  $('.btn-modal-close').on('click', function() {
+    $(this).parents('.modal').toggleClass('is-active');
+  });
+
+  initialize_game_intro();
+
+  // show game intro
+  // $('#modal-game-intro').toggleClass('is-active');
+
+  // let's fight!
+  $('#modal-game-intro .btn-modal-close').on('click', function() {
+    
+  });
 });
-Webcam.attach( '#my-camera' );
+
+function initialize_game_intro() {
+  // rspGetDialogContent('human', 'intro')
+}
+
+function initialize_webcam() {
+  // HTML5 WEBCAM
+  Webcam.set({
+    width: CAPTURE_IMG_WIDTH,
+    height: CAPTURE_IMG_HEIGHT,
+    image_format: 'jpeg',
+    jpeg_quality: 90
+  });
+  Webcam.attach( '#my-camera' );
+}
+
 
 let form_capture = document.getElementById('form-capture-image')
 $('.btn-capture-image').on('click', function(e) {

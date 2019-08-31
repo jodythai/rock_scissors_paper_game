@@ -11,18 +11,9 @@ from flask import current_app
 predict = Blueprint('predict', __name__)
 
 # load the trained model
-model = tf.keras.models.load_model("static/models/vnd_classifier_Minhdh.h5")
+model = tf.keras.models.load_model("static/models/my_model.h5")
 
-labels = {'1000': 0,
-          '10000': 1,
-          '100000': 2,
-          '2000': 3,
-          '20000': 4,
-          '200000': 5,
-          '5000': 6,
-          '50000': 7,
-          '500000': 8
-          }
+labels = {'paper': 0, 'rock': 1, 'scissors': 2}
 
 def preprocess_image(img_raw):
   predict_img_width = current_app.config['PREDICT_IMAGE_WIDTH']
@@ -62,6 +53,7 @@ def handle_predict():
     probabilites = model.predict(image)
     label = np.argmax(probabilites, axis=1).tolist()
     print('label:' + str(label[0]), file=sys.stdout)
+    print('probs:' + str(probabilites[0]), file=sys.stdout)
 
     # Map the labels to the 
     label = [val for val, key in labels.items() if key == label[0]]

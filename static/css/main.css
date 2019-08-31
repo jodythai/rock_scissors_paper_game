@@ -1,5 +1,13 @@
+html {
+  height: 100vh;
+}
+body {
+  height: 100vh;
+  min-height: 100vh;
+}
+
 h1, h2, h3, h4, h5, h6, .title  {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Orbitron', cursive;
   line-height: 2;
 }
 
@@ -53,24 +61,34 @@ h1 {
   background-color: #fff;
 }
 
+.is-doom {
+  background-image: linear-gradient(141deg,#9e0000 0,#000000 25%, #000000 75%,#eb0000 100%);
+}
+
 /*-----------------------------------*\
   MAIN
 \*-----------------------------------*/
-.section-main {
-  padding: 2rem 1.5rem!important; 
-  margin: 0 auto;
+.hero-main {
+  height: 100vh;
+  min-height: 100vh;
 }
 
-.box-main {
-  background: url("../img/pattern-4.jpg") repeat;
+.tile-game-panel {
+  background: rgb(43, 43, 43);
   text-align: center;
-  padding: 40px;
-  transition: 0.4s;
-  transition-timing-function: ease-in-out;
+  min-height: 50vh;
+  /* opacity: 0; */
 }
 
-.box-intro .title {
-  margin: 0 0 20px 0;
+.tile-game-panel h2 {
+  text-transform: uppercase;
+}
+
+/*-----------------------------------*\
+  HUMAN
+\*-----------------------------------*/
+.tile-human {
+  
 }
 
 #my-camera {
@@ -84,11 +102,6 @@ h1 {
 #loading {
   margin: 20px auto;
   width: 40%;
-}
-
-.wrapper {
-  width: 200%;
-  overflow: hidden;
 }
 
 .box-upload-file {
@@ -111,6 +124,11 @@ h1 {
   top: 15px;
   left: 0;
   -webkit-text-fill-color: white;
+}
+
+.tile-human .wrapper {
+  width: 200%;
+  overflow: hidden;
 }
 
 #results {
@@ -155,6 +173,14 @@ h1 {
 }
 
 /*-----------------------------------*\
+  AI
+\*-----------------------------------*/
+
+.tile-ai {
+  
+}
+
+/*-----------------------------------*\
   $ANIMATIONS
 \*-----------------------------------*/
 @keyframes hue {
@@ -165,6 +191,10 @@ h1 {
   to {
     filter: hue-rotate(-360deg);
   }
+}
+
+.anim-show-tile-game-panel {
+
 }
 
 .anim-transform-box {
