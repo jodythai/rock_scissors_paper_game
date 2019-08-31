@@ -10,9 +10,6 @@ from flask import current_app
 
 predict = Blueprint('predict', __name__)
 
-# load the trained model
-model = tf.keras.models.load_model(curent_app.config['TRAIN_MODEL'])
-
 labels = {'paper': 0, 'rock': 1, 'scissors': 2}
 
 def preprocess_image(img_raw):
@@ -34,6 +31,9 @@ def preprocess_image(img_raw):
 def handle_predict():
   probabilites = ''
   label = ''
+
+  # load the trained model
+  model = tf.keras.models.load_model(current_app.config['TRAIN_MODEL'])
   
   if request.method == 'POST':
 
