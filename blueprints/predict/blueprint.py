@@ -11,7 +11,7 @@ from flask import current_app
 predict = Blueprint('predict', __name__)
 
 # load the trained model
-model = tf.keras.models.load_model("static/models/my_model.h5")
+model = tf.keras.models.load_model(curent_app.config['TRAIN_MODEL'])
 
 labels = {'paper': 0, 'rock': 1, 'scissors': 2}
 
