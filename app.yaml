@@ -1,6 +1,7 @@
 runtime: python37
+instance_class: F4_1G
 env_variables:
-  GCP_PROJECT: "rsp-game"
+  GCP_PROJECT: "rsp-game-251717"
 entrypoint: gunicorn -b :$PORT main:app
 
 # The following parameters are optional
