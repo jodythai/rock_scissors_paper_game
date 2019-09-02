@@ -18,9 +18,9 @@ app.debug = True
 
 # App Settings
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['TRAIN_MODEL'] = "static/models/my_model_tl.h5" 
-app.config['PREDICT_IMAGE_WIDTH'] = 192
-app.config['PREDICT_IMAGE_HEIGHT'] = 192
+app.config['TRAIN_MODEL'] = "static/models/checkpoint-model_tl_ep60_160x160.h5" 
+app.config['PREDICT_IMAGE_WIDTH'] = 160
+app.config['PREDICT_IMAGE_HEIGHT'] = 160
 
 # Handle predict correction
 @app.route('/predict-correction/', methods=['POST'])

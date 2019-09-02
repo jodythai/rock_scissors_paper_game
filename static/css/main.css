@@ -11,21 +11,30 @@ h1, h2, h3, h4, h5, h6, .title  {
   line-height: 2;
 }
 
-h1 {
-  font-size: 3em;
-  font-weight: bold;
-  margin: 0 0 30px;
+h1.title {
+  font-size: 2.5em;
+  font-weight: bold;    
+  margin: 0;
+  padding: 28px 0 0 0;
+  line-height: 1em;
   text-align: center;
-  animation: hue 10s infinite linear;
 }
 
 .hidden {
   display: none!important;
 }
 
+input[type="text"] {
+  height: 3em;
+  line-height: 3em;
+  font-size: 1em;
+  font-family: 'Orbitron', cursive;
+  padding: 0 1em;
+}
+
 .text-grads-1 {
-  background: -webkit-gradient(linear,left top,right top,from(#3494E6),to(#EC6EAD));
-  background: linear-gradient(to right,#3494E6,#EC6EAD);
+  background: -webkit-gradient(linear,left top,right top,from(#d53369),to(#3f0101));
+  background: linear-gradient(to right,#d53369,#3f0101);
   background-clip: border-box;  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -33,8 +42,8 @@ h1 {
 }
 
 .text-grads-2 {
-  background: -webkit-gradient(linear,left top,right top,from(#d53369),to(#daae51));
-  background: linear-gradient(to right,#d53369,#daae51);
+  background: -webkit-gradient(linear,left top,right top,from(#ff0000),to(#bb0303)); 
+  background: linear-gradient(to right,#ff0000,#bb0303);
   background-clip: border-box;  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -65,6 +74,60 @@ h1 {
   background-image: linear-gradient(141deg,#9e0000 0,#000000 25%, #000000 75%,#eb0000 100%);
 }
 
+.hero-body {
+  padding: 0 1.5rem;
+}
+
+.vex.vex-theme-default.rsp-dialog .vex-content {
+  padding: 1.5em;
+  width: 780px;
+}
+
+.rsp-dialog-title {
+  font-size: 2em;
+  background: -webkit-gradient(linear,left top,right top,from(#d53369),to(#3f0101));
+  background: linear-gradient(to right,#d53369,#3f0101);
+  background-clip: border-box;  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+}
+
+.rsp-dialog-content {
+  margin-bottom: 10px;
+}
+
+.dialog-text-wrapper .letter-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.dialog-text-wrapper .letter {
+  font-family: 'Orbitron', cursive;
+  display: inline-block;
+  line-height: 1em;
+}
+/* 
+.rsp-dialog-buttons {
+  opacity: 0;
+} */
+
+.rsp-dialog-button {
+  background: -webkit-gradient(linear,left top,right top,from(#ff0000),to(#880303)); 
+  background: linear-gradient(to right,#ff0000,#880303);
+  border: none;
+  color: #fff;
+  font-family: 'Orbitron', cursive;
+  font-weight: bold;
+}
+
+.rsp-dialog-button:hover {
+  background: -webkit-gradient(linear,left top,right top,from(#ff0000),to(#bb0303)); 
+  background: linear-gradient(to right,#ff0000,#bb0303);
+  border: none;
+  color: #fff;
+}
 /*-----------------------------------*\
   MAIN
 \*-----------------------------------*/
@@ -76,12 +139,55 @@ h1 {
 .tile-game-panel {
   background: rgb(43, 43, 43);
   text-align: center;
-  min-height: 50vh;
-  /* opacity: 0; */
+  min-height: 80vh;
+  width: 46vw;
+  overflow: hidden;
+  position: relative;
 }
 
-.tile-game-panel h2 {
+.tile-game-panel h2.title {
   text-transform: uppercase;
+  margin-bottom: 0;
+  padding-top: .5em;
+}
+
+.tile-game-panel article {
+  padding: 1em 2em 2em 2em;
+}
+
+.tile-hero {
+  position: relative;
+}
+
+#game-status {
+  background: -webkit-gradient(linear,left top,right top,from(#ff0000),to(#bb0303)); 
+  background: linear-gradient(to right,#ff0000,#bb0303);
+  position: absolute;
+  border-radius: 50%;
+  width: 290px;
+  height: 290px;
+  top: 130px;
+  left: 460px;
+  opacity: 0;
+}
+
+#game-status .winner {
+  text-align: center;
+}
+
+#game-status .winner p {
+  color: #fff;
+  font-family: 'Orbitron', cursive;
+  font-weight: bold;
+  font-size: 2.8em;
+  text-align: center;
+  line-height: 1em;
+  margin: 0;
+  padding: 80px 0 20px 0;
+}
+
+#game-status .winner .btn-play-again {
+  opacity: 0;
 }
 
 /*-----------------------------------*\
@@ -91,7 +197,11 @@ h1 {
   
 }
 
-#my-camera {
+.tile-human .instructions {
+  margin: 0 0 1em;
+}
+
+#my-camera, .taken-photo {
   margin: 0 auto 20px auto;
 }
 
@@ -104,36 +214,51 @@ h1 {
   width: 40%;
 }
 
-.box-upload-file {
-  float: left;
+.tile-game-panel article.box-upload-file {
+  position: absolute;
+  width: 100%;
+  top: 65px;
+  left: 0;
+  /* float: left;
   transition: 0.4s;
   transform: translate(30%, 0);
-  transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out; */
 }
 
 .box-results {
-  float: left;
+  position: absolute;
+  width: 100%;
+  top: 65px;
+  left: 0;
+  transform:translateX(9999px);
+  /* float: left;
   transition: 0.4s;
   transform: translate(50%, 0);
   transition-timing-function: ease-in-out;
-  opacity: 0;
+  opacity: 0; */
 }
 
 #go-back {
-  position: absolute;
-  top: 15px;
-  left: 0;
-  -webkit-text-fill-color: white;
+  background: none;
+  color: #dbdbdb;
+}
+
+#confirm-weapon {
+  text-transform: uppercase;
 }
 
 .tile-human .wrapper {
-  width: 200%;
   overflow: hidden;
 }
 
 #results {
-  margin: 20px auto;
+  margin: 0 auto;
   position: relative;
+}
+
+#results h3.title {
+  font-size: 1.5em;
+  margin: 0;
 }
 
 #results ul {
@@ -168,6 +293,25 @@ h1 {
   text-align: left;
 }
 
+#taken-photo {
+  display: block;
+}
+
+.prediction-wrapper {
+  position: relative;
+  margin: 0 auto 20px auto;
+  width: 400px;
+}
+
+.prediction-text {
+  background: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
 #prediction {
   margin: 0;
 }
@@ -180,6 +324,157 @@ h1 {
   
 }
 
+.lord-ai-small {
+  width: 100%;
+  display: flex;
+  margin: 0 0 5px;
+}
+
+.lord-ai-small .lord-ai-avatar {
+  flex-grow: 1;
+}
+
+.lord-ai-small .lord-ai-avatar img {
+  width: 60px;
+  height: 60px;
+}
+
+.lord-ai-small .lord-ai-small-content {
+  font-family: 'Orbitron', cursive;
+  font-size: 1.2em;
+  text-align: left;
+  flex-grow: 5;
+  padding: 1em 0 0 .5em;
+}
+
+.lord-ai-small-content .letter-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.lord-ai-small-content .letter-wrapper .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+
+.lord-ai-intro {
+  position: absolute;
+  top: 0;
+  left: 48px;
+  width: 500px;
+  padding-top: 2em;
+}
+
+.lord-ai-intro .lord-ai-avatar {
+  /* flex-grow: 1;
+  width: 200px; */
+  margin: 0 0 1em;
+}
+
+.lord-ai-intro .lord-ai-intro-content {
+  font-family: 'Orbitron', cursive;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.lord-ai-intro-content .letter-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.lord-ai-intro-content .letter-wrapper .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.lord-ai-intro-content .ai-turn .letter{
+  text-transform: uppercase;
+}
+
+.dialog-text-wrapper .letter {
+  font-family: 'Orbitron', cursive;
+  display: inline-block;
+  line-height: 1em;
+}
+
+.box-ai-weapon {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  width: 500px;
+  left: 48px;
+}
+
+.tile-game-panel article.box-lord-ai-weapon {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+#lord-ai-weapon {
+  position: absolute;
+  height: 100%;
+  left: 80px; 
+  width: 410px;
+  left: 96px;
+  transform: translateX(9999px);
+}
+
+.lord-ai-weapon-loading {
+}
+
+.lord-ai-weapon-loading .grids {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 400px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.lord-ai-weapon-loading .grid {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 30;
+}
+
+.lord-ai-weapon-loading .shadow {
+  position: absolute;
+  opacity: .2;
+  z-index: 20;
+}
+
+.lord-ai-weapon-loading .ai-weapon {
+  position: absolute;
+  z-index: 10;
+}
+
+.lord-ai-weapon-loading .ai-weapon img {
+  opacity: 0;
+}
+
+.lord-ai-weapon-loading .grid .square {
+  pointer-events: none;
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin: 1px;
+  background-color: #fa4040;
+  font-size: 14px;
+}
+
+.lord-ai-weapon-loading .grid .small {
+  width: 20px;
+  height: 20px;
+}
+
+
 /*-----------------------------------*\
   $ANIMATIONS
 \*-----------------------------------*/
@@ -191,24 +486,6 @@ h1 {
   to {
     filter: hue-rotate(-360deg);
   }
-}
-
-.anim-show-tile-game-panel {
-
-}
-
-.anim-transform-box {
-  transition: 0.4s;
-  transform:  scale(0.4) 
-              translate(-70%, -40%);
-  transition-timing-function: ease-in-out;
-}
-
-.anim-show-result {
-  transition: 0.4s;
-  transform: translate(-50%, 0);
-  transition-timing-function: ease-in-out;
-  opacity: 1;
 }
 
 /*-----------------------------------*\

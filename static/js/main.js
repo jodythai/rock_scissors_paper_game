@@ -16,41 +16,17 @@ function readURL(input, id) {
   }
 }
 
-jQuery.ajaxSetup({
-  beforeSend: function() {
-     $('#loading').removeClass('hidden');
-  },
-  complete: function(){
-     $('#loading').addClass('hidden');
-  },
-  success: function() {
-    $('#loading').addClass('hidden');
-  }
-});
-
-$(document).ready(function() {
-
-  initialize_webcam()
-
-  // handle close modal box button
-  $('.btn-modal-close').on('click', function() {
-    $(this).parents('.modal').toggleClass('is-active');
-  });
-
-  initialize_game_intro();
-
-  // show game intro
-  // $('#modal-game-intro').toggleClass('is-active');
-
-  // let's fight!
-  $('#modal-game-intro .btn-modal-close').on('click', function() {
-    
-  });
-});
-
-function initialize_game_intro() {
-  // rspGetDialogContent('human', 'intro')
-}
+// jQuery.ajaxSetup({
+//   beforeSend: function() {
+//      $('#loading').removeClass('hidden');
+//   },
+//   complete: function(){
+//      $('#loading').addClass('hidden');
+//   },
+//   success: function() {
+//     $('#loading').addClass('hidden');
+//   }
+// });
 
 function initialize_webcam() {
   // HTML5 WEBCAM
@@ -63,15 +39,18 @@ function initialize_webcam() {
   Webcam.attach( '#my-camera' );
 }
 
-
 let form_capture = document.getElementById('form-capture-image')
 $('.btn-capture-image').on('click', function(e) {
   e.preventDefault();
 
+  $(this).addClass('is-loading');
+
   Webcam.snap(function(data_uri) {
     // display results in page
-    // readURL(data_uri, '#input-data-uri')
     let json_data = {'data-uri': data_uri }
+    let camera = $('#my-camera')
+    $('#my-camera').addClass('hidden');
+    $('.taken-photo').attr('src', data_uri).removeClass('hidden');
 
     $.ajax({
       type: 'POST',
@@ -81,33 +60,73 @@ $('.btn-capture-image').on('click', function(e) {
       dataType: 'json',
       data: JSON.stringify(json_data),
       success: function(data) {
-        $('.box-upload-file').addClass('anim-transform-box');
-        $('.box-results').removeClass('hidden').addClass('anim-show-result');
-        $('#results-prediction').removeClass('hidden')
+        $('.btn-capture-image').removeClass('is-loading');
         $('#taken-photo').attr('src', data_uri);
-        $('#prediction').text(data['label']);
+        $('#prediction').text(data['label'][0][0]);
+        $('#prediction-key').val(data['label'][0][0]);
         
-        html = '<ul>'
-        for( let i = 0; i < data['probs'].length; i++) {
-          data_splitted = data['probs'][i]
+        // html = '<ul>'
+        // for( let i = 0; i < data['probs'].length; i++) {
+        //   data_splitted = data['probs'][i]
 
-          html += '<li><span class="num">' + data_splitted[0] + '</span> <span class="prob">'+ data_splitted[1] + '</span></li>'
-        }
-        html += '</ul>'
+        //   html += '<li><span class="num">' + data_splitted[0] + '</span> <span class="prob">'+ data_splitted[1] + '</span></li>'
+        // }
+        // html += '</ul>'
 
-        $('#probs').text('').append(html)
+        // $('#probs').text('').append(html)
 
-        // $('.box-main').css('height', $('.box-results').height());
+        $('.box-results').removeClass('hidden');
+        $('#results-prediction').removeClass('hidden')
+
+        predictResultTimeline = anime.timeline();
+        predictResultTimeline.add({
+          targets: '.box-upload-file',
+          translateX: { value: [0, -250], duration: 200, easing: 'easeInQuad' },
+          opacity: [
+            { value: [1, 0], duration: 200, easing: 'easeInQuad' }
+          ],
+        }).add({
+          targets: '.box-results',
+          translateX: { value: [250, 0], duration: 200, easing: 'easeOutQuad' },
+          opacity: [
+            { value: [0, 1], duration: 200, easing: 'easeOutQuad' }
+          ],
+          complete: function() {
+            $('.tile-human').css('height', $('.box-results').height());
+          }
+        })
       }
     });
   });
 });
 
+// Choose another weapon (take another photo)
 $('#go-back').on('click', function(e) {
   e.preventDefault();
-  $('.box-upload-file').removeClass('anim-transform-box');
-  $('.box-results').removeClass('anim-show-result')
-  $('#results-prediction').addClass('hidden')
+
+  $('#my-camera').removeClass('hidden');
+  $('.taken-photo').addClass('hidden');
+  
+  predictResultTimeline = anime.timeline();
+  predictResultTimeline.add({
+    targets: '.box-results',
+    translateX: { value: [0, -250], duration: 200, easing: 'easeInQuad' },
+    opacity: [
+      { value: [1, 0], duration: 200, easing: 'easeInQuad' }
+    ],
+  }).add({
+    targets: '.box-upload-file',
+    translateX: { value: [250, 0], duration: 200, easing: 'easeOutQuad' },
+    opacity: [
+      { value: [0, 1], duration: 200, easing: 'easeOutQuad' }
+    ],
+  })
+  $('#results-prediction').addClass('hidden');
+});
+
+$('#confirm-weapon').on('click', function() {
+  rspInitLordAIWeapon();
+  $('#confirm-weapon, #go-back').addClass('hidden');
 });
 
 // Handle Predict Correction
@@ -137,3 +156,52 @@ function handle_predict_correction(label) {
     }
   });
 };
+
+$(document).ready(function() {
+
+  // initRSPGame();
+  initialize_webcam();
+
+  rspInitLordAIIntro();
+  
+  $('#game-status .btn-play-again').on('click', function() {
+    anime({
+      targets: '#game-status',
+      scale: [
+        {value: [1, 20], easing: 'easeOutSine', duration: 800}
+      ],
+      opacity: [
+        { value: [1, 0], duration: 600, easing: 'easeOutQuad' }
+      ],
+      complete: function() {
+        $('#confirm-weapon, #go-back').removeClass('hidden');
+        $('#game-status').css('transform', 'scale(1)')
+        $('#go-back').trigger('click');
+        $('')
+
+        let rspPlayAgainTimeline = anime.timeline();
+  
+        rspPlayAgainTimeline.add({
+          targets: '#lord-ai-weapon',
+          translateX: { value: [0, -250], duration: 500, easing: 'easeInQuad' },
+          opacity: [
+            { value: [1, 0], duration: 500, easing: 'easeOutQuad' }
+          ],
+        }).add({
+          targets: '.lord-ai-intro',
+          translateX: { value: [-250, 0], duration: 500, easing: 'easeInQuad' },
+          opacity: [
+            { value: [0, 1], duration: 500, easing: 'easeOutQuad' }
+          ],
+          complete: function() {
+            $('.lord-ai-weapon-loading .square').css('transform', 'scale(1)')
+            $('.lord-ai-intro-content .intro').removeClass('hidden');
+            $('.lord-ai-intro-content .ai-turn').addClass('hidden');
+            $('.lord-ai-weapon-loading .ai-weapon img').css('opacity', 0);
+            rspAnimateText('.lord-ai-intro-content .intro .letters', false, false);
+          }
+        })
+      }
+    })
+  });
+});

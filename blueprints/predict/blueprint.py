@@ -12,6 +12,16 @@ predict = Blueprint('predict', __name__)
 
 labels = {'paper': 0, 'rock': 1, 'scissors': 2}
 
+model = None
+
+def load_model():
+  # load the trained model
+  t1 = time.time()
+  model = tf.keras.models.load_model(current_app.config['TRAIN_MODEL'])
+  t2 = time.time()
+  print('load model runtime:' + str(t2-t1), file=sys.stdout)
+  return model
+
 def preprocess_image(img_raw):
   predict_img_width = current_app.config['PREDICT_IMAGE_WIDTH']
   predict_img_height = current_app.config['PREDICT_IMAGE_HEIGHT']
@@ -31,10 +41,12 @@ def preprocess_image(img_raw):
 def handle_predict():
   probabilites = ''
   label = ''
-
-  # load the trained model
-  model = tf.keras.models.load_model(current_app.config['TRAIN_MODEL'])
   
+  global model
+
+  if model is None:
+    model = load_model()
+
   if request.method == 'POST':
 
     data = request.get_json()
@@ -50,13 +62,16 @@ def handle_predict():
       f.write(img_decode)
 
     # Predict the uploaded image
+    t1 = time.time()
     probabilites = model.predict(image)
+    t2 = time.time()
+    print('predict runtime:' + str(t2-t1), file=sys.stdout)
     label = np.argmax(probabilites, axis=1).tolist()
     print('label:' + str(label[0]), file=sys.stdout)
     print('probs:' + str(probabilites[0]), file=sys.stdout)
 
     # Map the labels to the 
-    label = [val for val, key in labels.items() if key == label[0]]
+    label = [(val, key) for val, key in labels.items() if key == label[0]]
     probs = probabilites[0].tolist()
     for val, key in labels.items():
       probs[key] = [val, probs[key]]
