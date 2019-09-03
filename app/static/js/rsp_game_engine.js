@@ -102,11 +102,11 @@ function rspLoadLordAIWeapon() {
     targets: '.lord-ai-intro',
     translateX: { value: [0, -250], duration: 500, easing: 'easeInQuad' },
     opacity: [
-      { value: [1, 0], duration: 500, easing: 'easeOutQuad' }
+      { value: [1, 0], duration: 500, easing: 'easeInQuad' }
     ],
   }).add({
     targets: '#lord-ai-weapon',
-    translateX: { value: [-250, 0], duration: 500, easing: 'easeInQuad' },
+    translateX: { value: [250, 0], duration: 500, easing: 'easeOutQuad' },
     opacity: [
       { value: [0, 1], duration: 500, easing: 'easeOutQuad' }
     ],
@@ -241,7 +241,8 @@ function rspShowDialog(race, dialogName, appendLocation='body') {
   if (dialogName == 'intro-form') {
     let rspIntroFormHTML = '<form name="form-rsp-register">'
 
-    rspIntroFormHTML += '<input type="text" name="nickname" />'
+    rspIntroFormHTML += '<label for="nickname">Your Nickname</label><input type="text" name="nickname" required/>'
+    rspIntroFormHTML += '<br /><label for="password">Password</label><input type="password" name="password" required/>'
     rspIntroFormHTML += '</form>'
 
     rspDialogHTML = rspDialogHTML.replace(/\[\[intro-form\]\]/g, rspIntroFormHTML);

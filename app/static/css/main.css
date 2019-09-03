@@ -128,6 +128,10 @@ input[type="text"] {
   border: none;
   color: #fff;
 }
+
+.vex-overlay {
+  background: rgba(0, 0, 0, 1);
+}
 /*-----------------------------------*\
   MAIN
 \*-----------------------------------*/
@@ -136,13 +140,17 @@ input[type="text"] {
   min-height: 100vh;
 }
 
-.tile-game-panel {
+.tile.is-child.tile-game-panel {
+  width: 46vw;
+  /* margin: 1em!important; */
+}
+
+.tile-game-panel .wrapper {
   background: rgb(43, 43, 43);
   text-align: center;
-  min-height: 80vh;
-  width: 46vw;
-  overflow: hidden;
   position: relative;
+  min-height: 80vh;
+  margin: 1em;
 }
 
 .tile-game-panel h2.title {
@@ -171,7 +179,7 @@ input[type="text"] {
   width: 290px;
   height: 290px;
   top: 130px;
-  left: -140px;
+  left: -160px;
   opacity: 0;
 }
 
@@ -198,7 +206,11 @@ input[type="text"] {
   HUMAN
 \*-----------------------------------*/
 .tile-human {
-  
+  position: relative;
+}
+
+.tile-human .wrapper {
+  overflow: hidden;
 }
 
 .tile-human .instructions {
@@ -324,14 +336,37 @@ input[type="text"] {
   AI
 \*-----------------------------------*/
 
-.tile-ai {
-  
+.tile-ai .wrapper {
+  overflow: hidden;
+}
+
+.box-ai-weapon {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  width: 500px;
+  left: 48px;
+}
+
+.tile-game-panel article.box-lord-ai-weapon {
+  position: relative;
+  height: 100%;
+  /* overflow: hidden; */
+  padding-top: 0;
+}
+
+.box-lord-ai-weapon .box-content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
 }
 
 .lord-ai-small {
-  width: 100%;
+  width: 400px;
   display: flex;
-  margin: 0 0 5px;
+  margin: 0 auto 5px;
 }
 
 .lord-ai-small .lord-ai-avatar {
@@ -362,12 +397,12 @@ input[type="text"] {
   line-height: 1em;
 }
 
-
 .lord-ai-intro {
   position: absolute;
   top: 0;
-  left: 48px;
-  width: 500px;
+  left: 0;
+  /* flex-grow: 1; */
+  width: 100%;
   padding-top: 2em;
 }
 
@@ -404,32 +439,18 @@ input[type="text"] {
   line-height: 1em;
 }
 
-.box-ai-weapon {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  width: 500px;
-  left: 48px;
-}
-
-.tile-game-panel article.box-lord-ai-weapon {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  padding-top: 0;
-}
-
 #lord-ai-weapon {
-  position: absolute;
+  /* flex-grow: 1; */
   height: 100%;
-  left: 80px; 
-  width: 410px;
-  left: 96px;
+  width: 100%;
+  position: absolute;
+  top: 0; 
+  left: 0;
   transform: translateX(9999px);
 }
 
-.lord-ai-weapon-loading {
-}
+/* .lord-ai-weapon-loading {
+} */
 
 .lord-ai-weapon-loading .grids {
   position: relative;

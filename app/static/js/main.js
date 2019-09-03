@@ -82,18 +82,18 @@ $('.btn-capture-image').on('click', function(e) {
         predictResultTimeline = anime.timeline();
         predictResultTimeline.add({
           targets: '.box-upload-file',
-          translateX: { value: [0, -250], duration: 200, easing: 'easeInQuad' },
+          translateX: { value: [0, -250], duration: 500, easing: 'easeInQuad' },
           opacity: [
-            { value: [1, 0], duration: 200, easing: 'easeInQuad' }
+            { value: [1, 0], duration: 500, easing: 'easeInQuad' }
           ],
         }).add({
           targets: '.box-results',
-          translateX: { value: [250, 0], duration: 200, easing: 'easeOutQuad' },
+          translateX: { value: [250, 0], duration: 500, easing: 'easeOutQuad' },
           opacity: [
-            { value: [0, 1], duration: 200, easing: 'easeOutQuad' }
+            { value: [0, 1], duration: 500, easing: 'easeOutQuad' }
           ],
           complete: function() {
-            $('.tile-human').css('height', $('.box-results').height());
+            // $('.tile-human').css('height', $('.box-results').height());
           }
         })
       }
@@ -104,25 +104,26 @@ $('.btn-capture-image').on('click', function(e) {
 // Choose another weapon (take another photo)
 $('#go-back').on('click', function(e) {
   e.preventDefault();
-
-  $('#my-camera').removeClass('hidden');
-  $('.taken-photo').addClass('hidden');
   
   predictResultTimeline = anime.timeline();
   predictResultTimeline.add({
     targets: '.box-results',
-    translateX: { value: [0, -250], duration: 200, easing: 'easeInQuad' },
+    translateX: { value: [0, -250], duration: 500, easing: 'easeInQuad' },
     opacity: [
-      { value: [1, 0], duration: 200, easing: 'easeInQuad' }
+      { value: [1, 0], duration: 500, easing: 'easeInQuad' }
     ],
   }).add({
     targets: '.box-upload-file',
-    translateX: { value: [250, 0], duration: 200, easing: 'easeOutQuad' },
+    translateX: { value: [250, 0], duration: 500, easing: 'easeOutQuad' },
     opacity: [
-      { value: [0, 1], duration: 200, easing: 'easeOutQuad' }
+      { value: [0, 1], duration: 500, easing: 'easeOutQuad' }
     ],
+    complete: function() {
+      $('#my-camera').removeClass('hidden');
+      $('.taken-photo').addClass('hidden');
+      $('#results-prediction').addClass('hidden');
+    }
   })
-  $('#results-prediction').addClass('hidden');
 });
 
 $('#confirm-weapon').on('click', function() {
