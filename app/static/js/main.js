@@ -54,7 +54,8 @@ $('.btn-capture-image').on('click', function(e) {
 
     $.ajax({
       type: 'POST',
-      url: '/predict/',
+      // url: '/predict/',
+      url: 'https://asia-east2-rsp-game-251717.cloudfunctions.net/predict',
       processData: false,
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
