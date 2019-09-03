@@ -159,6 +159,10 @@ input[type="text"] {
   position: relative;
 }
 
+.tile-game-panel-parent {
+  position: relative;
+}
+
 #game-status {
   background: -webkit-gradient(linear,left top,right top,from(#ff0000),to(#bb0303)); 
   background: linear-gradient(to right,#ff0000,#bb0303);
@@ -167,7 +171,7 @@ input[type="text"] {
   width: 290px;
   height: 290px;
   top: 130px;
-  left: 460px;
+  left: -140px;
   opacity: 0;
 }
 

@@ -161,6 +161,11 @@ function rspShowWinner() {
     $('#game-status .winner .letters').text("Tie!")
   }
 
+  // recalculate #game-status position
+  let gameStatusElem = $('#game-status');
+  let gameStatusWidth = gameStatusElem.width();
+  let gameStatusHeight = gameStatusElem.width();
+
   anime({
     targets: '#game-status',
     scale: [
