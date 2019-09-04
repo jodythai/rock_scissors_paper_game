@@ -1,6 +1,7 @@
 # Rock, Scissors, Paper War: A.I. vs Human
 ### Duong B. Thai, Phuong T.M. Chu, Dung Nguyen & Hai Nguyen
 This is the project that we finished after the 7th week of studying **Machine Learning** from scratch.
+
 The online game can be found [here](https://rsp-game-251717.appspot.com/#).
 
 <p align="center">
